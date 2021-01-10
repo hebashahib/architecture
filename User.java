@@ -17,15 +17,15 @@ public class User
 			System.out.println("Choose your action: ");
 			System.out.println("1: Register. ");
 			System.out.println("2: Login. ");
-			System.out.println("3: Add Player. ");
-			System.out.println("4: Add Event ");
-			System.out.println("5: New Squad. ");
-			System.out.println("6: End Week. ");
-			System.out.println("7: Create Player.");
-			System.out.println("8: Retrieve data.");
-			System.out.println("9: Exit. ");
+			System.out.println("3: Add Event ");
+			System.out.println("4: New Squad. ");
+			System.out.println("5: End Week. ");
+			System.out.println("6: Create Player.");
+			System.out.println("7: Retrieve data.");
+			System.out.println("8: Exit. ");
 			Scanner hima = new Scanner (System.in);	
 			Scanner hima1 = new Scanner (System.in);
+			Scanner hima2 = new Scanner (System.in);
 			String X = hima.nextLine();
 			Register_login heba = new Register_login();
 			Squad mazen = new Squad();
@@ -44,17 +44,6 @@ public class User
 				heba.Login(Y);
 			}
 			else if(X.equals("3")) 
-			{
-				for(int p =0; p<20; p++)
-				{
-					
-				System.out.println("enter");
-				String Y = hima1.nextLine();
-				mazen.addplayer(Y);
-						
-				}
-			}
-			else if(X.equals("4")) 
 			{
 				System.out.println("Enter the last name of the player and the number of the event.");
 				System.out.println("1: playing up to 60 minutes.");
@@ -78,30 +67,40 @@ public class User
 				shoot.addevent(Y);
 			}
 			
-			else if(X.equals("5")) 
+			else if(X.equals("4")) 
 			{
-				mazen.new_squad();
+					mazen.new_squad();
+					for(int p =0; p<15; p++)
+					{
+						
+					System.out.println("enter");
+					String Y = hima1.nextLine();
+					mazen.addplayer(Y);	
+					}
+					System.out.println("Enter game week.");
+					String H = hima2.nextLine();
+					mazen.score(H);
 			}
-			else if(X.equals("6")) 
+			else if(X.equals("5")) 
 			{
 				System.out.println("Enter lastname of the player.");
 				String Y = hima1.nextLine();
 				shoot.endgameweek(Y);
 			}
-			else if(X.equals("7")) 
+			else if(X.equals("6")) 
 			{
 				
 				System.out.println("enter");
 				String Y = hima1.nextLine();
 				bala7.Create(Y);
 			}
-			else if(X.equals("8")) 
+			else if(X.equals("7")) 
 			{
 				System.out.println("Please enter the last name of the player you want to retrieve the data of: ");
 				String Y = hima1.nextLine();
 				bala7.Retrieve(Y);
 			}
-			else if(X.equals("9")) 
+			else if(X.equals("8")) 
 			{
 				//heba.exit();
 				y=false;
