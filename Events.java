@@ -54,35 +54,23 @@ public class Events {
 		int w=0;
 		String last = "";
 		String[] arr = new String[7];
-		String week=null;
-		String total=null;
 		String[] input = number.split(" ");
 		String action = input[0];
 		String lastname = input[1];
 		String gameweek = input[2];
-		
 		LinkedList<String> list=new LinkedList<String>();
-		LinkedList<String> list1=new LinkedList<String>();
-		LinkedList<String> list2=new LinkedList<String>();
 		LinkedList<String> lines=new LinkedList<String>();
-		LinkedList<String> line=new LinkedList<String>();
-		LinkedList<String> line2=new LinkedList<String>();
 		LinkedList<String> position = new LinkedList<String>();
 		BufferedReader read = new BufferedReader(new FileReader("C:\\Users\\Hadeel\\Desktop\\heb.txt"));
 		String a = read.readLine();
 		BufferedReader readss = new BufferedReader(new FileReader("C:\\Users\\Hadeel\\Desktop\\backup.txt"));
 		String k = readss.readLine();
 		LinkedList<String> list4 = new LinkedList<String>();
-		String weekp = "";
 		while(a!=null)
 		{
 			arr = a.split(" ");
 			last = arr[1];
-		    total = arr[5];
-			week = arr[6];
 			list.add(last);
-			list1.add(total);
-			list2.add(week);
 			position.add(arr[4]);
 			lines.add(a);
 			a = read.readLine();
@@ -94,7 +82,6 @@ public class Events {
 			last = hadeel[0];
 			list4.add(k);
 			k=readss.readLine();
-			
 		}
 		
 		for(int i=0; i<list4.size(); i++)
@@ -186,7 +173,6 @@ public class Events {
 		           int f =Integer.parseInt(g);
 		           f+=w;
 		           String x=String.valueOf(f);
-		           LinkedList <String> jo = new LinkedList<String>();
 		           list4.set(s,x);
 		           //System.out.println(list4);
 		           String delimiter = " ";
