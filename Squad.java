@@ -19,14 +19,16 @@ public class Squad{
 	float squadvalue = 0;
 	int playernumber = 0;
 	int linecounter = 0;
+	static int numberOfSquads = 0;
+	Events object = new Events();
 	//File pathway = new File("C:\\Users\\Hadeel\\Desktop\\squad.txt");
 	public void addplayer(String x) throws IOException
 	{
 		String[] zeft = x.split(" ");
-		String lastname = zeft[1];
-		String value = zeft[2];
+		String lastname = zeft[0];
+		String value = zeft[1];
 		float v = Float.parseFloat(value);
-		String position = zeft[3];
+		String position = zeft[2];
 		if(position.equals("Goalkeeper") && playernumber<15)
 		{
 		if(v<=maxvalue-squadvalue )	
@@ -42,10 +44,10 @@ public class Squad{
 				Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 			}
 			else
-				System.out.println("kteer");
+				System.out.println("Invalid");
 		}
 		else
-			System.out.println("kteer");
+			System.out.println("Invalid");
 		}
 		else if(position.equals("Defender") )
 		{
@@ -62,10 +64,10 @@ public class Squad{
 				Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 			}
 			else
-				System.out.println("kteer");
+				System.out.println("Invalid");
 			}
 			else
-				System.out.println("kteer");
+				System.out.println("Invalid");
 		}
 		else if(position.equals("Forward") && playernumber<15)
 		{
@@ -82,10 +84,10 @@ public class Squad{
 				Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 			}
 			else
-				System.out.println("kteer");
+				System.out.println("Invalid");
 			}
 			else
-				System.out.println("kteer");
+				System.out.println("Invalid");
 		}
 		else if(position.equals("Midfielder") && playernumber<15)
 		{
@@ -103,34 +105,62 @@ public class Squad{
 				Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 			}
 			else
-				System.out.println("kteer");
+				System.out.println("Invalid");
 			}
 			else
-				System.out.println("kteer");
+				System.out.println("Invalid");
 		}
 		
 		
 	}
+	
 	public void new_squad() throws IOException
+	{	
+		numberOfSquads++;
+		System.out.println(numberOfSquads);
+		String x = "Squad: " +numberOfSquads;
+		Path path=Paths.get("C:\\Users\\Hadeel\\Desktop\\squad.txt");
+		
+		Files.write(path,  x.getBytes(), StandardOpenOption.APPEND);
+		Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
+	}
+	public void score(String d) throws IOException
 	{
-		BufferedReader read = new BufferedReader(new FileReader ("C:\\Users\\Hadeel\\Desktop\\squad.txt"));
-		String q = read.readLine();
-		while(q!=null)
+		int id = Integer.parseInt(d);
+		BufferedReader read = new BufferedReader(new FileReader("C:\\Users\\Hadeel\\Desktop\\squad.txt"));
+		String awel = read.readLine();
+		BufferedReader read2 = new BufferedReader(new FileReader("C:\\Users\\Hadeel\\Desktop\\backup.txt"));
+		String tany = read2.readLine();
+		LinkedList<String> list1 = new LinkedList<String>();
+		LinkedList<String> list2 = new LinkedList<String>();
+		LinkedList<String> line = new LinkedList<String>();
+		while(awel!=null)
 		{
-			linecounter++;
-			q = read.readLine();
+			String[] array1 = awel.split(" ");
+			String lastname = array1[0]; 
+			list1.add(lastname);
+			awel = read.readLine();
 		}
-		System.out.println(linecounter);
-		//linecounter+=19;
-		if(linecounter==15 || linecounter==34 || linecounter==53)
+		while(tany!=null)
 		{
-			Path path=Paths.get("C:\\Users\\Hadeel\\Desktop\\squad.txt");
-			Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
-			Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
-			Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
-			Files.write(path,  "Next squad".getBytes(), StandardOpenOption.APPEND);
-			Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
+			String[] array2 = tany.split(" ");
+			String last = array2[0];
+			list2.add(last);
+			line.add(tany);
+			tany = read.readLine();
 		}
+		int totalscore=0;
+		for(int i =0; i<line.size(); i++)
+		{
+			if(list1.get(i).equals(list2.get(i)))
+			{
+				String[] asem = line.get(i).split(" ");
+				String point = asem[id];
+				int points = Integer.parseInt(point);
+				totalscore+=points;
+			}
+		}
+		System.out.println(totalscore);
 	}
 	
 }
