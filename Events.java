@@ -60,6 +60,7 @@ public class Events {
 		String gameweek = input[2];
 		LinkedList<String> list=new LinkedList<String>();
 		LinkedList<String> lines=new LinkedList<String>();
+		LinkedList<String> lasts=new LinkedList<String>();
 		LinkedList<String> position = new LinkedList<String>();
 		BufferedReader read = new BufferedReader(new FileReader("C:\\Users\\Hadeel\\Desktop\\heb.txt"));
 		String a = read.readLine();
@@ -78,13 +79,15 @@ public class Events {
 		}
 		while(k!=null)
 		{
-			String[] hadeel = k.split("  ");
+			String[] hadeel = k.split(" ");
 			last = hadeel[0];
+			lasts.add(last);
 			list4.add(k);
+			//System.out.println(lasts);
 			k=readss.readLine();
 		}
-		
-		for(int i=0; i<list4.size(); i++)
+		//System.out.println("f");
+		for(int i=0; i<list.size(); i++)
 		{
 			if(lastname.equals(list.get(i)))
 			{
@@ -136,7 +139,7 @@ public class Events {
 					w-=3;
 				else if(action.equals("15"))
 				    w-=2;
-				
+				System.out.println(list4.get(i));
 				//file heb
 				String[] nas = lines.get(i).split(" ");
 				String ha = nas[6];
@@ -152,6 +155,7 @@ public class Events {
 			      {
 			         buffer.append(sc.nextLine()+System.lineSeparator());
 			      }
+			      System.out.println(lines.get(i));
 			      String fileContents = buffer.toString();
 			      sc.close();
 			      String oldLine = lines.get(i);
@@ -164,7 +168,7 @@ public class Events {
 			      
 			      //
 		           String delimiter1 =" ";
-		           String result1 = String.join(delimiter1,list4);
+		           String result1 = String.join(delimiter1,list4.get(i));
 		        //   System.out.println(list4);
 		           int s = Integer.parseInt(gameweek);
 		           //System.out.println(line2.get(1));
@@ -176,7 +180,7 @@ public class Events {
 		           list4.set(s,x);
 		           //System.out.println(list4);
 		           String delimiter = " ";
-		           String result = String.join(delimiter,list4);
+		           String result = String.join(delimiter,list4.get(i));
 		           System.out.println(result);
 		           System.out.println("\n");	   
 		           Scanner sc1 = new Scanner(new File("C:\\Users\\Hadeel\\Desktop\\backup.txt"));
