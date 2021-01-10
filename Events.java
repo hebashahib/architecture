@@ -40,7 +40,7 @@ public class Events {
 			heba[i] = lista.get(i);
 			for(int j=0; j<=37; j++)
 			{
-				hima[j] = " 0";	
+				hima[j] = "0";	
 				li =String.join(" ",hima);	
 			}
 			ty = String.join(" ",heba[i],li);
@@ -60,12 +60,14 @@ public class Events {
 		String action = input[0];
 		String lastname = input[1];
 		String gameweek = input[2];
-		int s = Integer.parseInt(gameweek);
+		
 		LinkedList<String> list=new LinkedList<String>();
 		LinkedList<String> list1=new LinkedList<String>();
 		LinkedList<String> list2=new LinkedList<String>();
 		LinkedList<String> lines=new LinkedList<String>();
-		LinkedList<String> line=new LinkedList<String>();	
+		LinkedList<String> line=new LinkedList<String>();
+		LinkedList<String> line2=new LinkedList<String>();
+		LinkedList<String> position = new LinkedList<String>();
 		BufferedReader read = new BufferedReader(new FileReader("C:\\Users\\Hadeel\\Desktop\\heb.txt"));
 		String a = read.readLine();
 		BufferedReader readss = new BufferedReader(new FileReader("C:\\Users\\Hadeel\\Desktop\\backup.txt"));
@@ -81,21 +83,21 @@ public class Events {
 			list.add(last);
 			list1.add(total);
 			list2.add(week);
+			position.add(arr[4]);
 			lines.add(a);
-			a = read.readLine();	
+			a = read.readLine();
+			//System.out.println(lines);
 		}
 		while(k!=null)
 		{
 			String[] hadeel = k.split("  ");
 			last = hadeel[0];
-			for(int i =0; i<39; i++)
-			{
-				 list4.add(hadeel[i]);
-			}
-			k=read.readLine(); 
+			list4.add(k);
+			k=readss.readLine();
+			
 		}
-	
-		for(int i=0; i<list.size(); i++)
+		
+		for(int i=0; i<list4.size(); i++)
 		{
 			if(lastname.equals(list.get(i)))
 			{
@@ -104,19 +106,37 @@ public class Events {
 				else if(action.equals("2"))
 					w+=2;
 				else if(action.equals("3"))
-					w+=6;
+					if(position.get(i).equals("Goalkeeper") || position.get(i).equals("Defender"))
+						w+=6;
+					else
+						System.out.println("Invalid.");
 				else if(action.equals("4"))
-					w+=5;
+					if(position.get(i).equals("Midfielder"))
+						w+=5;
+					else
+						System.out.println("Invalid.");
 				else if(action.equals("5"))
-					w+=4;
+					if(position.get(i).equals("Forward"))
+						w+=4;
+					else
+						System.out.println("Invalid.");
 				else if(action.equals("6"))
 					w+=3;
 				else if(action.equals("7"))
-					w+=4;
+					if(position.get(i).equals("Goalkeeper") || position.get(i).equals("Defender"))
+						w+=4;
+					else
+						System.out.println("Invalid.");
 				else if(action.equals("8"))
-					w++;
+					if(position.get(i).equals("Midfielder"))
+						w++;
+					else
+						System.out.println("Invalid.");
 				else if(action.equals("9"))
-					w++;
+					if(position.get(i).equals("Forward"))
+						w++;
+					else
+						System.out.println("Invalid.");
 				else if(action.equals("10"))
 					w+=5;
 				else if(action.equals("11"))
@@ -154,21 +174,24 @@ public class Events {
 			      writer.append(fileContents);
 			      writer.flush();
 			      
-			     
-			      //replace in backup file
-		           String delimiter1 = "  ";
+			      
+			      //
+		           String delimiter1 =" ";
 		           String result1 = String.join(delimiter1,list4);
-		           System.out.println("Resulting String:   " + result1);
-		       
-		           String g = list4.get(s);
+		        //   System.out.println(list4);
+		           int s = Integer.parseInt(gameweek);
+		           //System.out.println(line2.get(1));
+		           String[] habal = result1.split(" ");
+		           String g = habal[s];
 		           int f =Integer.parseInt(g);
 		           f+=w;
-		           
 		           String x=String.valueOf(f);
-		           list4.set(s,x); 
-		           String delimiter = "  ";
+		           LinkedList <String> jo = new LinkedList<String>();
+		           list4.set(s,x);
+		           //System.out.println(list4);
+		           String delimiter = " ";
 		           String result = String.join(delimiter,list4);
-		           System.out.println("Resulting String:   " + result);
+		           System.out.println(result);
 		           System.out.println("\n");	   
 		           Scanner sc1 = new Scanner(new File("C:\\Users\\Hadeel\\Desktop\\backup.txt"));
 				   StringBuffer buffer1 = new StringBuffer();
@@ -177,15 +200,15 @@ public class Events {
 				         buffer1.append(sc1.nextLine()+System.lineSeparator());
 				      }
 				      String Contents1 = buffer1.toString();
-				      sc.close();
+				      sc1.close();
 				      String oldLine1 = result1;
 				      String newLine1 = result;
 				      Contents1 =Contents1.replaceAll(oldLine1, newLine1);
 				      FileWriter writer1 = new FileWriter("C:\\Users\\Hadeel\\Desktop\\backup.txt");
 				      writer1.write(Contents1);
 				      writer1.flush();
-				      w=0;
 			}
+			
 		}		
 	} 
 	public void endgameweek(String lastname) throws IOException
