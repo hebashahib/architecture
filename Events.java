@@ -139,7 +139,6 @@ public class Events {
 					w-=3;
 				else if(action.equals("15"))
 				    w-=2;
-				System.out.println(list4.get(i));
 				//file heb
 				String[] nas = lines.get(i).split(" ");
 				String ha = nas[6];
@@ -155,7 +154,6 @@ public class Events {
 			      {
 			         buffer.append(sc.nextLine()+System.lineSeparator());
 			      }
-			      System.out.println(lines.get(i));
 			      String fileContents = buffer.toString();
 			      sc.close();
 			      String oldLine = lines.get(i);
@@ -174,6 +172,7 @@ public class Events {
 		           //System.out.println(line2.get(1));
 		           String[] habal = result1.split(" ");
 		           String g = habal[s];
+		           
 		           int f =Integer.parseInt(g);
 		           f+=w;
 		           String x=String.valueOf(f);
